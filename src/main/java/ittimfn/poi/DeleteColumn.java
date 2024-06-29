@@ -6,6 +6,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.microsoft.schemas.office.visio.x2012.main.CellType;
+
 import ittimfn.poi.enums.CellTypeEnum;
 
 import java.io.FileInputStream;
@@ -55,9 +57,8 @@ public class DeleteColumn {
                     logger.trace("newCell.getCellType(): {}", newCell.getCellType());
                     logger.trace("newCell value: {}", CellTypeEnum.valueOfCellType(newCell.getCellType()).getCellValue(newCell));
 
-                    oldCell = row.createCell(colIndex);
-                    oldCell.setCellType(newCell.getCellType());
-                    oldCell.setCellValue(CellTypeEnum.valueOfCellType(newCell.getCellType()).getCellValue(newCell));
+                    oldCell = row.createCell(colIndex, newCell.getCellType());
+                    CellTypeEnum.valueOfCellType(newCell.getCellType()).copyCell(newCell, oldCell);
 
                 } else if (oldCell != null && newCell == null) {
                     // 削除対象セルにはなにか書かれているが、右に値がない
