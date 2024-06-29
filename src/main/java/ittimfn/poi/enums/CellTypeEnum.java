@@ -2,8 +2,6 @@ package ittimfn.poi.enums;
 
 import org.apache.poi.ss.usermodel.DateUtil;
 
-import ittimfn.poi.App;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
@@ -12,6 +10,11 @@ import org.apache.poi.ss.usermodel.CellType;
 
 import java.math.BigDecimal;
 
+/**
+ * CellTypeで値の取得、コピーを分岐する。
+ * 値の取得はすべてStringで返す。（本来は書式によって使用するPoiのメソッドが異なり、戻り値の型も異なる。）
+ * コピーは値とスタイルをコピーする。
+ */
 public enum CellTypeEnum {
     NUMERIC(CellType.NUMERIC) { 
         @Override
